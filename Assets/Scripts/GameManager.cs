@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject wallBrickPrefab;
+    public GameObject enemyPrefab;
     public TMPro.TextMeshProUGUI score;
     private int points = 0;
 
@@ -30,6 +31,32 @@ public class GameManager : MonoBehaviour
                         Vector2 wallBrickPosition = new Vector2(wallBrickStartPosX + k * wallBrickWidth + i * spaceBetweenWalls, wallBrickStartPosY + j * wallBrickHeight);
                         GameObject wallBrick = Instantiate(wallBrickPrefab, wallBrickPosition, Quaternion.identity);
                     }
+                }
+            }
+        }
+
+        //Spawn enemies
+        float enemiesStartPosX = 6.7f - 9.6f;
+        float enemiesStartPosY = 5.15f - 5.4f;
+        float spaceBetweenEnemiesX = 0.46f;
+        float spaceBetweenEnemiesY = 0.6f;
+        float enemiesWidth = 0.125f;
+        float enemiesHeight = 0.125f;
+
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 11; j++)
+            {
+                Vector2 enemyPosition = new Vector2(enemiesStartPosX + j * enemiesWidth + j * spaceBetweenEnemiesX, enemiesStartPosY + i * enemiesHeight + i * spaceBetweenEnemiesY);
+                GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
+
+                if (i == 2 || i == 3)
+                {
+                    enemy.GetComponent<Enemy>().points = 20;
+                }
+                if (i == 4)
+                {
+                    enemy.GetComponent<Enemy>().points = 30;
                 }
             }
         }

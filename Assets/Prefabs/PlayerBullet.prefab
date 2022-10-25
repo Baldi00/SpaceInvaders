@@ -147,4 +147,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionUp: 1
-  speed: 20
+  speed: 15

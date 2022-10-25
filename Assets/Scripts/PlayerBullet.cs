@@ -13,7 +13,7 @@ public class PlayerBullet : Bullet
             {
                 collided = true;
                 SpriteRenderer wallBrick = collision.gameObject.GetComponent<SpriteRenderer>();
-                if (wallBrick.color.r == 0.5f)
+                if (wallBrick.color.a == 0.5f)
                     Destroy(collision.gameObject);
                 else
                     wallBrick.color = new Color(0f, 1f, 0f, 0.5f);
