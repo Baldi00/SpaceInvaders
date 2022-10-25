@@ -13,7 +13,7 @@ public class EnemyBullet : Bullet
             {
                 collided = true;
                 SpriteRenderer wallBrick = collision.gameObject.GetComponent<SpriteRenderer>();
-                if (wallBrick.color.r == 0.5f)
+                if (wallBrick.color.a == 0.5f)
                     Destroy(collision.gameObject);
                 else
                     wallBrick.color = new Color(0f, 1f, 0f, 0.5f);
@@ -23,8 +23,16 @@ public class EnemyBullet : Bullet
             if (tag == "Player")
             {
                 collided = true;
-                Destroy(collision.gameObject);
+                GameObject explosion = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+                explosion.GetComponent<SpriteRenderer>().color = new Color(0f, 1f, 0f, 1f);
+                collision.gameObject.SetActive(false);
                 GameObject.Find("GameManager").GetComponent<GameManager>().PlayerDestroyed();
+                Destroy(gameObject);
+                SoundManager.Instance.PlayExplosion();
+            }
+            if (tag == "DownCollider")
+            {
+                collided = true;
                 Destroy(gameObject);
             }
         }

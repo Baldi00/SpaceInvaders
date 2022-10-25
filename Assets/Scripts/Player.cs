@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(fireButton) && GameObject.Find("PlayerBullet(Clone)") == null)
         {
             Instantiate(bulletPrefab, new Vector2(transform.position.x, transform.position.y + 0.15f), Quaternion.identity);
+            SoundManager.Instance.PlayBullet();
         }
     }
 }

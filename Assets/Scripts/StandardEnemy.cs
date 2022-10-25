@@ -19,11 +19,14 @@ public class StandardEnemy : Enemy
 
     private void Update()
     {
-        remainingTime -= 0.03f;
+        if (GameManager.IsGameRunning)
+        {
+            remainingTime -= 7.5f * Time.deltaTime;
+        }
 
         if(remainingTime <= 0)
         {
-            if(transform.position.y <= -3f)
+            if(transform.position.y <= -2.6f)
             {
                 GameObject.Find("GameManager").GetComponent<GameManager>().PlayerLost();
             }

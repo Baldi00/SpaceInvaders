@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Explosion : MonoBehaviour
 {
-    public int durationFrames = 40;
+    public int durationFrames = 15;
 
     private void Update()
     {

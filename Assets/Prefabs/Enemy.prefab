@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 10
-  speed: 0
+  speed: 0.1
   maxPosition: 0.7
   movementSideStep: 0.08
   movementDownStep: 0.1

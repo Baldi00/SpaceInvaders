@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class UFOEnemy : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (GameManager.IsGameRunning)
+        {
+            if (transform.position.x <= -4)
+            {
+                Destroy(gameObject);
+                SoundManager.Instance.StopPlaying();
+            }
+            transform.Translate(speed * Time.deltaTime * Vector2.left);
+        }
     }
 }

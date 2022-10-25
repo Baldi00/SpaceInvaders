@@ -26,15 +26,29 @@ public class PlayerBullet : Bullet
                 explosion.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1f);
                 Destroy(gameObject);
             }
-            if (tag == "Enemy")
+            if (tag == "Enemy" || tag == "Ufo")
             {
                 collided = true;
                 int points = collision.gameObject.GetComponent<Enemy>().points;
-                GameObject.Find("GameManager").GetComponent<GameManager>().PlayerKilledEnemy(points);
+                GameObject.Find("GameManager").GetComponent<GameManager>().PlayerKilledEnemy(points, tag);
 
+                GameObject explosion = Instantiate(explosionPrefab, collision.gameObject.transform.position, Quaternion.identity);
+                if (tag == "Ufo")
+                {
+                    explosion.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+                    SoundManager.Instance.StopPlaying();
+                }
+                Destroy(collision.gameObject);
+                Destroy(gameObject);
+                SoundManager.Instance.PlayExplosion();
+            }
+            if (tag == "Bullet")
+            {
+                collided = true;
                 Instantiate(explosionPrefab, collision.gameObject.transform.position, Quaternion.identity);
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
+                SoundManager.Instance.PlayExplosion();
             }
         }
     }
