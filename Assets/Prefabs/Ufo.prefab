@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8107334598123183111}
   - component: {fileID: 8107334598123183110}
   - component: {fileID: 8107334598123183109}
+  - component: {fileID: 860278539505665455}
   m_Layer: 0
   m_Name: Ufo
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,3 +112,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.41, y: 2.81}
   m_EdgeRadius: 0
+--- !u!114 &860278539505665455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8107334598123183108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea80a9c5cc75764e91566132877d396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 50
