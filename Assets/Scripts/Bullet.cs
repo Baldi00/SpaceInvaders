@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public bool directionUp;
     public float speed;
+    public GameObject explosionPrefab;
     protected Rigidbody2D rigidbody2d;
     protected bool collided = false;
 

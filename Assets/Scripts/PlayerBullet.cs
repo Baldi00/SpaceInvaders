@@ -17,7 +17,13 @@ public class PlayerBullet : Bullet
                     Destroy(collision.gameObject);
                 else
                     wallBrick.color = new Color(0f, 1f, 0f, 0.5f);
-
+                Destroy(gameObject);
+            }
+            if (tag == "UpCollider")
+            {
+                collided = true;
+                GameObject explosion = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+                explosion.GetComponent<SpriteRenderer>().color = new Color(1f, 0f, 0f, 1f);
                 Destroy(gameObject);
             }
             if (tag == "Enemy")
@@ -25,6 +31,8 @@ public class PlayerBullet : Bullet
                 collided = true;
                 int points = collision.gameObject.GetComponent<Enemy>().points;
                 GameObject.Find("GameManager").GetComponent<GameManager>().PlayerKilledEnemy(points);
+
+                Instantiate(explosionPrefab, collision.gameObject.transform.position, Quaternion.identity);
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
             }

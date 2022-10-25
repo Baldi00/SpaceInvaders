@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WallBrick
   - Enemy
+  - UpCollider
   layers:
   - Default
   - TransparentFX

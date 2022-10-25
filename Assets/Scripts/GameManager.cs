@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject wallBrickPrefab;
     public GameObject enemyPrefab;
+    public GameObject enemiesParent;
     public TMPro.TextMeshProUGUI score;
     private int points = 0;
 
@@ -49,14 +50,16 @@ public class GameManager : MonoBehaviour
             {
                 Vector2 enemyPosition = new Vector2(enemiesStartPosX + j * enemiesWidth + j * spaceBetweenEnemiesX, enemiesStartPosY + i * enemiesHeight + i * spaceBetweenEnemiesY);
                 GameObject enemy = Instantiate(enemyPrefab, enemyPosition, Quaternion.identity);
+                enemy.transform.parent = enemiesParent.transform;
+                enemy.GetComponent<StandardEnemy>().movementOffset = i * 1.5f + j * 0.1f;
 
                 if (i == 2 || i == 3)
                 {
-                    enemy.GetComponent<Enemy>().points = 20;
+                    enemy.GetComponent<StandardEnemy>().points = 20;
                 }
                 if (i == 4)
                 {
-                    enemy.GetComponent<Enemy>().points = 30;
+                    enemy.GetComponent<StandardEnemy>().points = 30;
                 }
             }
         }
@@ -79,5 +82,18 @@ public class GameManager : MonoBehaviour
     {
         this.points += points;
         score.text = this.points.ToString("D4");
+
+        int enemiesCount = enemiesParent.transform.childCount;
+        float speed = (55 - enemiesCount) * 0.1f;
+        for (int i = 0; i < enemiesCount; i++)
+        {
+            GameObject enemyGO = enemiesParent.transform.GetChild(i).gameObject;
+            Enemy enemy = enemyGO.GetComponent<Enemy>();
+            enemy.speed = speed;
+        }
+    }
+    public void PlayerLost()
+    {
+        Time.timeScale = 0f;
     }
 }
